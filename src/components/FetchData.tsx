@@ -1,20 +1,35 @@
 import { useQuery } from "@tanstack/react-query"
-// import { useState } from "react"
+import { FC, useState } from "react"
 import api from "../api/api"
 
-const  FetchData = () => {
-  // const [fetchData, setData] = useState([])
-
+const  FetchData:FC = () => {
+  const POSTS = '/posts'
+  const [fetchedDatas, setDataValue] = useState<any[]>([])
+  
   const fetchData = async () =>{
-    const response = await api.get('/posts')
+    const response = await api.get(POSTS)
     return response.data
   }
+
+  const {data, status} = useQuery(["posts"], fetchData)
   
-  const {data} = useQuery(["posts"], fetchData)
+  // setData(data)
+
+  console.log(data);
+
+  if(status === 'loading') {
+    return (
+      <h1>Loading</h1>
+    )
+  } 
+
   
-  console.log(data)
+
+
+  
   return (
-    <div>FetchData</div>
+    <div>
+    </div>
   )
 }   
 export default FetchData
