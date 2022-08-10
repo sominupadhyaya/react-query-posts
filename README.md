@@ -7,4 +7,5 @@ with the help of the useQuery hook from react-query**
 
 - React (with Typescript)
 - React-Query
+- Axios (for data fetching)
 - jsonplaceholder API (for fake data)
