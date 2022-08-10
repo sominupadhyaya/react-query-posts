@@ -1,16 +1,23 @@
 import { useQuery } from "@tanstack/react-query"
-import { FC } from "react"
+import { FC, useState } from "react"
 import api from "../api/api"
 
 const  FetchData:FC = () => {
   const POSTS = '/posts'
+  const COMMENTS = '/comments'
   
-  const fetchData = async () =>{
-    const response = await api.get(POSTS)
+  const [requestType, setReqType] = useState<string>(POSTS)
+
+  const fetchData = async ({ queryKey }) =>{
+    const response = await api(queryKey[1])
+    
     return response.data
   }
 
-  const {data, status} = useQuery(["posts"], fetchData)
+  const {data, status , isPreviousData} = useQuery(["posts" , requestType], fetchData , {
+    keepPreviousData : true
+  })
+  
   
 
 
@@ -26,6 +33,7 @@ const  FetchData:FC = () => {
   
   return (
     <>
+    <button onClick={() => setReqType(COMMENTS)}>Watch comments</button>
     {
       data.map((post: any | null) =>{
         return (
