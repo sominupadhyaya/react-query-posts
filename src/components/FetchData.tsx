@@ -18,8 +18,6 @@ const  FetchData:FC = () => {
     keepPreviousData : true
   })
   
-  
-console.log(data)
 
   if(isLoading) {
     return (
