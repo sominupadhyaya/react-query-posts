@@ -26,33 +26,31 @@ console.log(data)
       <h1>Loading</h1>
     )
   } 
-
-  if(requestType === POSTS){
-  data.map((post: any | null) =>{
-    return (
-      <div key={post.id}>
-      <h2>{post.title}</h2>
-      <p>{post.body}</p>
-    </div>
-  )  
-})
-}
-
-if(requestType === COMMENTS){
-  data.map((comment : any | null) =>{
-    return(
-      <div key={comment.id}>
-        <div>{comment.name}</div>
-        <p>{comment.body}</p>
-      </div>
-    )
-  })
-} 
   return (
-    <>
+    <div>
+
     <button onClick={() => setReqType(COMMENTS)}>Watch Comments</button>
     <button onClick={() => setReqType(POSTS)}>Watch Posts</button>
-    </>
+    {
+      requestType === POSTS ?  
+      data.map((post: any | null) =>{
+        return (
+          <div key={post.id}>
+          <h2>Title : {post.title}</h2>
+          <h3>Body  : {post.body}</h3>
+        </div>
+      )})
+      : 
+      data.map((comment : any | null) =>{
+        return(
+          <div key={comment.id}>
+            <h2>Name : {comment.name}</h2>
+            <h3>Comment : {comment.body}</h3>
+          </div>
+        )
+      })
+}
+        </div>
 )
 }
 export default FetchData
