@@ -30,13 +30,14 @@ console.log(data)
     <div>
 
     <button onClick={() => setReqType(COMMENTS)}>Watch Comments</button>
-    <button onClick={() => setReqType(POSTS)}>Watch Posts</button>
+    <button disabled={isPreviousData && requestType === POSTS} onClick={() => setReqType(POSTS)}>Watch Posts</button>
+    
     {
       requestType === POSTS ?  
       data.map((post: any | null) =>{
         return (
           <div key={post.id}>
-          <h2>Title : {post.title}</h2>
+          <h2>Post Title : {post.title}</h2>
           <h3>Body  : {post.body}</h3>
         </div>
       )})
