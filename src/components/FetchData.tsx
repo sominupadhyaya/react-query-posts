@@ -54,5 +54,5 @@ if(requestType === COMMENTS){
     <button onClick={() => setReqType(POSTS)}>Watch Posts</button>
     </>
 )
-  }
+}
 export default FetchData
